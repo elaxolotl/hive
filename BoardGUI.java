@@ -17,13 +17,13 @@ public class BoardGUI extends JPanel {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (grid[i][j].isAlive()) {
-                    g.setColor(Color.BLACK);
+                    g.setColor(Color.DARK_GRAY);
                 } else {
                     g.setColor(Color.WHITE);
                 }
                 System.out.println(grid[i][j].isAlive());
                 g.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
-                g.setColor(Color.GRAY);
+                g.setColor(Color.WHITE);
                 g.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);
             }
         }
@@ -38,12 +38,12 @@ public class BoardGUI extends JPanel {
         frame.add(boardGUI);
         frame.setVisible(true);
         boardGUI.repaint();
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         while (true) {
             board.updateGrid();
             boardGUI.repaint();
-            Thread.sleep(1000);
+            Thread.sleep(100);
         }
     }
 }
