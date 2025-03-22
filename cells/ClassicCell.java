@@ -24,14 +24,9 @@ public class ClassicCell extends Cell {
                 }
             }
         }
-        if (neighbors < 3){
+        if (neighbors != 3) {
             setAlive(false);
-        } else if (neighbors == 3) {
-            setAlive(true);
-        }
-        else {
-            setAlive(false);
-        }
+        } else setAlive(true);
     }
 
     public void reproduce(){
