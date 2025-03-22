@@ -9,7 +9,7 @@ abstract public class Cell{
         this.isAlive = true;
     }
 
-    abstract public void spawn();
+    abstract public void spawn(Cell[][] grid);
 
     abstract public void reproduce();
 
