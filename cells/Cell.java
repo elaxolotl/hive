@@ -4,6 +4,7 @@ public class Cell{
     private int x;
     private int y;
     private boolean isAlive;
+    private int age;
 
     public Cell(int x, int y){
         this.x = x;
@@ -11,9 +12,11 @@ public class Cell{
         double rand = Math.random();
         if (rand < 0.5){
             isAlive = true;
+            age = 1;
         }
         else{
             isAlive = false;
+            age = 0;
         }
     }
 
@@ -24,6 +27,14 @@ public class Cell{
                 result = (neighbors == 2 || neighbors == 3);
             } else {
                 result = (neighbors == 3);
+            }
+            if (result) {
+                age++;
+                if (age > 100){
+                    setAlive(false);
+                }
+            } else {
+                age = 0;
             }
             return result;
     }
@@ -40,6 +51,10 @@ public class Cell{
         return isAlive;
     }
 
+    public int getAge(){
+        return age;
+    }
+
     public void setX(int x){
         this.x = x;
     }
@@ -50,6 +65,10 @@ public class Cell{
 
     public void setAlive(boolean isAlive){
         this.isAlive = isAlive;
+    }
+
+    public void setAge(int age){
+        this.age = age;
     }
 
     public int countNeighbors(Cell[][] grid) {
