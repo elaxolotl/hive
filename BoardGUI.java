@@ -97,7 +97,9 @@ public class BoardGUI extends JPanel {
 
     private void runSimulation() {
         while (running) {
-            data.add(board.getAverageLifeSpan());
+            if (board.calculatePopulation()>1){
+                data.add(board.getAverageLifeSpan());
+            }
             board.updateGrid();
             generation++;
             boardPanel.repaint();
