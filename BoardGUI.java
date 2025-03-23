@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import cells.Cell;
+import cells.ClassicCell;
 
 public class BoardGUI extends JPanel {
     private final Board board;
@@ -17,7 +18,12 @@ public class BoardGUI extends JPanel {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (grid[i][j].getAlive()) {
-                    g.setColor(Color.DARK_GRAY);
+                    if (grid[i][j] instanceof ClassicCell) {
+                        g.setColor(Color.DARK_GRAY);
+                    }
+                    else {
+                        g.setColor(Color.BLUE);
+                    }
                 } else {
                     g.setColor(Color.WHITE);
                 }

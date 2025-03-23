@@ -1,5 +1,6 @@
 import cells.Cell;
 import cells.ClassicCell;
+import cells.SpecialCell;
 
 public class Board {
     private Cell[][] grid;
@@ -8,7 +9,13 @@ public class Board {
         grid = new Cell[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                grid[i][j] = new ClassicCell(i, j);
+                double rand = Math.random();
+                if (rand < 0.5) {
+                    grid[i][j] = new ClassicCell(i, j);
+                }
+                else {
+                    grid[i][j] = new SpecialCell(i, j);
+                }
             }
         }
     }

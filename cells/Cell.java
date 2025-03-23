@@ -8,7 +8,13 @@ abstract public class Cell{
     public Cell(int x, int y){
         this.x = x;
         this.y = y;
-        this.isAlive = true;
+        double rand = Math.random();
+        if (rand < 0.5){
+            isAlive = true;
+        }
+        else{
+            isAlive = false;
+        }
     }
 
     abstract public boolean spawn(Cell[][] grid);
