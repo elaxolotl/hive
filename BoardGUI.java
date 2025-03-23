@@ -16,12 +16,11 @@ public class BoardGUI extends JPanel {
         int cellSize = 20;
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
-                if (grid[i][j].isAlive()) {
+                if (grid[i][j].getAlive()) {
                     g.setColor(Color.DARK_GRAY);
                 } else {
                     g.setColor(Color.WHITE);
                 }
-                System.out.println(grid[i][j].isAlive());
                 g.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
                 g.setColor(Color.WHITE);
                 g.drawRect(j * cellSize, i * cellSize, cellSize, cellSize);

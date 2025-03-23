@@ -8,25 +8,15 @@ public class ClassicCell extends Cell {
         setAlive(rand < 0.5);
     }
 
-    public void spawn(Cell[][] grid){
-        int x=getX();
-        int y=getY();
-        int neighbors=0;
-        for (int i = -1; i <= 1; i++) {
-            for (int j = -1; j <= 1; j++) {
-                if (i == 0 && j == 0) continue;
-                int neighborX = x + i;
-                int neighborY = y + j;
-                if (neighborX >= 0 && neighborX < grid.length && neighborY >= 0 && neighborY < grid[0].length) {
-                    if (grid[neighborX][neighborY].isAlive()) {
-                        neighbors++;
-                    }
-                }
-            }
+    public boolean spawn(Cell[][] grid){
+        int neighbors = countNeighbors(grid);
+        boolean result;
+        if (getAlive()) {
+            result = (neighbors == 2 || neighbors == 3);
+        } else {
+            result = (neighbors == 3);
         }
-        if (neighbors != 3) {
-            setAlive(false);
-        } else setAlive(true);
+        return result;
     }
 
     public void reproduce(){
