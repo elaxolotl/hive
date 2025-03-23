@@ -52,7 +52,7 @@ The project is organized in the classes shown in the entity relationship diagram
 ### Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/hive.git
+   git clone https://github.com/elaxolotl/hive.git
    ```
 2. Navigate to the project directory:
    ```sh
