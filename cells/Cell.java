@@ -41,7 +41,7 @@ public class Cell {
                 lifespan = neighborsLifeSpan / neighbors;
             }
             if (age > lifespan) {
-                setAlive(false);
+                result = false;
             }
         } else {
             age = 0;
