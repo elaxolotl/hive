@@ -39,6 +39,11 @@ Contrary to initial expectations, average lifespans tend to decrease over genera
 - The averaging inheritance mechanism tends to favor shorter lifespans
 - Spatial dynamics and timing of cell death significantly impact evolution
 
+# Project Structure
+
+The project is organized in the classes shown in the entity relationship diagram below:
+![er-diagram-hive](/static/diagram-hive.png)
+
 ## Getting Started
 
 ### Prerequisites
