@@ -49,4 +49,16 @@ public class Board {
         }
         return population;
     }
+
+    public double getAverageLifeSpan(){
+        int totalLife = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j].getAlive()) {
+                    totalLife = grid[i][j].getLifeSpan()+totalLife;
+                }
+            }
+        }
+        return (double)totalLife/calculatePopulation();
+    }
 }

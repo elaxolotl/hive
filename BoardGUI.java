@@ -2,7 +2,10 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.util.List;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import cells.Cell;
 
 public class BoardGUI extends JPanel {
@@ -11,6 +14,7 @@ public class BoardGUI extends JPanel {
     private final JSlider lifespanSlider;
     private final JButton startButton;
     private final JButton resetButton;
+    private final JButton chartButton;
     private final JLabel speedLabel;
     private final JLabel lifespanLabel;
     private final JLabel generationLabel;
@@ -19,6 +23,7 @@ public class BoardGUI extends JPanel {
     private final BoardPanel boardPanel;
     private int generation=0;
     private int population=0;
+    private ArrayList<Double> data = new ArrayList<>();
 
     public BoardGUI(Board board) {
         this.board = board;
@@ -26,6 +31,7 @@ public class BoardGUI extends JPanel {
         this.lifespanSlider = new JSlider(3, 200, 100);
         this.startButton = new JButton("Start");
         this.resetButton = new JButton("Reset");
+        this.chartButton = new JButton("Chart");
         this.speedLabel = new JLabel("Speed: " + speedSlider.getValue());
         this.lifespanLabel = new JLabel("LifeSpan: " + lifespanSlider.getValue());
         this.boardPanel = new BoardPanel();
@@ -49,6 +55,7 @@ public class BoardGUI extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         buttonPanel.add(startButton);
         buttonPanel.add(resetButton);
+        buttonPanel.add(chartButton);
 
         this.add(controlPanel, BorderLayout.NORTH);
         this.add(boardPanel, BorderLayout.CENTER);
@@ -58,6 +65,7 @@ public class BoardGUI extends JPanel {
     private void addListeners() {
         startButton.addActionListener(e -> toggleSimulation());
         resetButton.addActionListener(e -> resetBoard());
+        chartButton.addActionListener(e -> showChart());
         lifespanSlider.addChangeListener(e -> updateLifespan());
         speedSlider.addChangeListener(e -> updateSpeed());
     }
@@ -89,6 +97,7 @@ public class BoardGUI extends JPanel {
 
     private void runSimulation() {
         while (running) {
+            data.add(board.getAverageLifeSpan());
             board.updateGrid();
             generation++;
             boardPanel.repaint();
@@ -98,6 +107,16 @@ public class BoardGUI extends JPanel {
                 Thread.currentThread().interrupt();
             }
         }
+    }
+
+    private void showChart() {
+        JFrame chartFrame = new JFrame("Line Chart");
+        chartFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        chartFrame.add(new ChartPanel(data));
+        chartFrame.setSize(800, 600);
+        chartFrame.setLocationRelativeTo(null);
+        chartFrame.setVisible(true);
+        System.out.println(data.toString());
     }
 
     public int getPopulation() {
