@@ -1,20 +1,25 @@
+![bee icon](/static/bee-icon.png)
+
 # Hive: A game of life with aging mechanics
 
 This project extends Conway's Game of Life with a unique aging mechanism that introduces evolutionary dynamics to the classic cellular automaton.
 
 ## Overview
 
-The standard Game of Life follows simple rules where cells live or die based on their neighbors. This implementation adds:
+The standard Game of Life follows simple rules where cells live or die based on their neighbors that is:
+
+- Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+- Any live cell with two or three live neighbours lives on to the next generation.
+- Any live cell with more than three live neighbours dies, as if by overpopulation.
+- Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+
+This implementation also adds:
 
 - Each cell has a random lifespan assigned at initialization
 - Cells die when they exceed their lifespan, regardless of neighbor count
 - When a dead cell becomes alive, it inherits the average lifespan of its living neighbors
-- This creates an evolutionary system where lifespan characteristics change over generations
 
-## Project Structure
-
-The project consists of the following components as shown in the entity relationship diagram:
-
+This creates an evolutionary system where lifespan characteristics change over generations
 
 ## Features
 
@@ -22,6 +27,9 @@ The project consists of the following components as shown in the entity relation
 - Visualization of cell age and lifespan
 - Statistics tracking for average lifespan over generations
 - Configurable parameters for initial conditions
+
+## Demo
+![demo video](/static/demo-gif.gif)
 
 ## Interesting Findings
 
@@ -34,24 +42,31 @@ Contrary to initial expectations, average lifespans tend to decrease over genera
 ## Getting Started
 
 ### Prerequisites
-- [List required dependencies/libraries]
+- Java Development Kit (JDK) 23 or higher
 
 ### Installation
-```
-[Installation instructions]
-```
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/hive.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd hive
+   ```
+3. Compile the project:
+   ```sh
+   javac -d out src/**/*.java
+   ```
+4. Run the project:
+   ```sh
+   java -cp out BoardGUI
+   ```
 
 ### Usage
-```
-[Example commands or code to run the simulation]
-```
-
-## Configuration Options
-
-- `GRID_SIZE`: Dimensions of the simulation grid
-- `INITIAL_LIFESPAN_RANGE`: Range for randomly assigned initial lifespans
-- `SIMULATION_SPEED`: Controls how fast generations progress
-- `VISUALIZATION_MODE`: Options for displaying cell age and status
+1. Adjust the simulation speed and lifespan using the sliders.
+2. Click "Start" to begin the simulation.
+3. Click "Reset" to reset the board.
+4. Click "Chart" to view the lifespan statistics over generations.
 
 ## Contributing
 
@@ -62,9 +77,8 @@ Contributions are welcome! This project offers many possibilities for experiment
 
 ## License
 
-[Your chosen license]
+This project is licensed under the MIT license
 
 ## Acknowledgments
 
 - John Conway for the original Game of Life
-- [Any other acknowledgments]
