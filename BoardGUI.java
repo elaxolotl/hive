@@ -13,9 +13,12 @@ public class BoardGUI extends JPanel {
     private final JButton resetButton;
     private final JLabel speedLabel;
     private final JLabel lifespanLabel;
+    private final JLabel generationLabel;
+    private final JLabel populationLabel;
     private boolean running = false;
-    private int speed;
     private final BoardPanel boardPanel;
+    private int generation=0;
+    private int population=0;
 
     public BoardGUI(Board board) {
         this.board = board;
@@ -26,6 +29,8 @@ public class BoardGUI extends JPanel {
         this.speedLabel = new JLabel("Speed: " + speedSlider.getValue());
         this.lifespanLabel = new JLabel("LifeSpan: " + lifespanSlider.getValue());
         this.boardPanel = new BoardPanel();
+        this.generationLabel = new JLabel("generation: "+ generation);
+        this.populationLabel = new JLabel("population: "+ board.calculatePopulation());
         setupUI();
         addListeners();
     }
@@ -33,11 +38,13 @@ public class BoardGUI extends JPanel {
     private void setupUI() {
         this.setLayout(new BorderLayout());
 
-        JPanel controlPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+        JPanel controlPanel = new JPanel(new GridLayout(3, 2, 5, 5));
         controlPanel.add(speedLabel);
         controlPanel.add(speedSlider);
         controlPanel.add(lifespanLabel);
         controlPanel.add(lifespanSlider);
+        controlPanel.add(generationLabel);
+        controlPanel.add(populationLabel);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         buttonPanel.add(startButton);
@@ -76,13 +83,14 @@ public class BoardGUI extends JPanel {
     }
 
     private void updateSpeed() {
-        speed = speedSlider.getValue();
+        int speed = speedSlider.getValue();
         speedLabel.setText("Speed: " + speed);
     }
 
     private void runSimulation() {
         while (running) {
             board.updateGrid();
+            generation++;
             boardPanel.repaint();
             try {
                 Thread.sleep(speedSlider.getValue());
@@ -90,6 +98,14 @@ public class BoardGUI extends JPanel {
                 Thread.currentThread().interrupt();
             }
         }
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
     }
 
     private class BoardPanel extends JPanel {
@@ -105,6 +121,8 @@ public class BoardGUI extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Cell[][] grid = board.getGrid();
+            generationLabel.setText("Generation: " + generation);
+            populationLabel.setText("Population: " + board.calculatePopulation());
             for (int i = 0; i < grid.length; i++) {
                 for (int j = 0; j < grid[i].length; j++) {
                     g.setColor(grid[i][j].getAlive() ? getCellColor(grid[i][j].getAge()) : Color.WHITE);
