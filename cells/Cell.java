@@ -15,7 +15,7 @@ public class Cell {
         if (rand < 0.5) {
             isAlive = true;
             age = 1;
-            lifespan = (int) (rand * maxLifespan);
+            lifespan = (int) (Math.random() * maxLifespan);
         } else {
             isAlive = false;
             age = 0;
@@ -108,7 +108,9 @@ public class Cell {
                 int nx = x + i;
                 int ny = y + j;
                 if (nx >= 0 && nx < grid.length && ny >= 0 && ny < grid[0].length) {
-                    if (grid[nx][ny].getAlive()) count = count + grid[nx][ny].getLifeSpan();
+                    if (grid[nx][ny].getAlive()){
+                        count = count + grid[nx][ny].getLifeSpan();
+                    }
                 }
             }
         }
