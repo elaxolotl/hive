@@ -116,7 +116,6 @@ public class BoardGUI extends JPanel {
         chartFrame.setSize(800, 600);
         chartFrame.setLocationRelativeTo(null);
         chartFrame.setVisible(true);
-        System.out.println(data.toString());
     }
 
     public int getPopulation() {
