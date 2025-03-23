@@ -2,6 +2,7 @@ package cells;
 
 public class ClassicCell extends Cell {
 
+
     public ClassicCell(int x, int y){
         super(x, y);
     }

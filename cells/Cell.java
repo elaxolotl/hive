@@ -1,6 +1,6 @@
 package cells;
 
-abstract public class Cell{
+public class Cell{
     private int x;
     private int y;
     private boolean isAlive;
@@ -17,9 +17,16 @@ abstract public class Cell{
         }
     }
 
-    abstract public boolean spawn(Cell[][] grid);
-
-    abstract public void reproduce();
+    public boolean spawn(Cell[][] grid){
+            int neighbors = countNeighbors(grid);
+            boolean result;
+            if (getAlive()) {
+                result = (neighbors == 2 || neighbors == 3);
+            } else {
+                result = (neighbors == 3);
+            }
+            return result;
+    }
 
     public int getX(){
         return x;
