@@ -144,18 +144,21 @@ public class BoardGUI extends JPanel {
             populationLabel.setText("Population: " + board.calculatePopulation());
             for (int i = 0; i < grid.length; i++) {
                 for (int j = 0; j < grid[i].length; j++) {
-                    g.setColor(grid[i][j].getAlive() ? getCellColor(grid[i][j].getAge()) : Color.WHITE);
+                    g.setColor(grid[i][j].getAlive() ? getCellColor(grid[i][j]) : Color.WHITE);
                     g.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
                 }
             }
         }
 
-        private Color getCellColor(int age) {
+        private Color getCellColor(Cell cell) {
+            int age = cell.getAge();
+            if (!cell.getAlive()){
+                return Color.WHITE;
+            }
             return switch (age) {
                 case 1 -> Color.BLACK;
                 case 2 -> Color.DARK_GRAY;
-                case 3 -> Color.GRAY;
-                default -> Color.WHITE;
+                default -> Color.GRAY;
             };
         }
     }
