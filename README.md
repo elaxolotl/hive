@@ -42,7 +42,7 @@ Contrary to initial expectations, the average lifespan of cells depends heavily 
 <div style="display: flex;">
   <div style="flex: 1; padding: 10px; border: 1px solid black;">
 
-      *average lifespan evolution in high density environments* 
+      average lifespan evolution in high density environments 
       
 ![graph1](/static/graph-high-density.png)
 
@@ -50,7 +50,7 @@ Contrary to initial expectations, the average lifespan of cells depends heavily 
   </div>
   <div style="flex: 1; padding: 10px; border: 1px solid black;">
      
-    *average lifespan evolution in low density environments* 
+    average lifespan evolution in low density environments
      
 ![graph1](/static/graph-low-density.png)
 
