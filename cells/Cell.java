@@ -1,4 +1,5 @@
 package cells;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Cell {
     private int x;
@@ -7,6 +8,7 @@ public class Cell {
     private int age;
     private int lifespan;
     private static int maxLifespan = 100;
+    double sigma = 15;
 
     public Cell(int x, int y) {
         this.x = x;
@@ -15,7 +17,7 @@ public class Cell {
         if (rand < 0.5) {
             isAlive = true;
             age = 1;
-            lifespan = (int) (Math.random() * maxLifespan);
+            lifespan = (int) (maxLifespan + sigma * ThreadLocalRandom.current().nextGaussian());
         } else {
             isAlive = false;
             age = 0;
