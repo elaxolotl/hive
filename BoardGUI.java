@@ -16,6 +16,7 @@ public class BoardGUI extends JPanel {
     private final JSlider lifespanSlider;
     private final JButton startButton;
     private final JButton resetButton;
+    private final JButton clearButton;
     private final JButton chartButton;
     private final JLabel speedLabel;
     private final JLabel lifespanLabel;
@@ -32,7 +33,8 @@ public class BoardGUI extends JPanel {
         this.speedSlider = new JSlider(100, 5000);
         this.lifespanSlider = new JSlider(3, 200, 100);
         this.startButton = new JButton("Start");
-        this.resetButton = new JButton("Reset");
+        this.resetButton = new JButton("Randomize");
+        this.clearButton = new JButton("Clear Board");
         this.chartButton = new JButton("Chart");
         this.speedLabel = new JLabel("Speed: " + speedSlider.getValue());
         this.lifespanLabel = new JLabel("LifeSpan: " + lifespanSlider.getValue());
@@ -56,6 +58,7 @@ public class BoardGUI extends JPanel {
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         buttonPanel.add(startButton);
+        buttonPanel.add(clearButton);
         buttonPanel.add(resetButton);
         buttonPanel.add(chartButton);
 
@@ -70,6 +73,7 @@ public class BoardGUI extends JPanel {
         chartButton.addActionListener(e -> showChart());
         lifespanSlider.addChangeListener(e -> updateLifespan());
         speedSlider.addChangeListener(e -> updateSpeed());
+        clearButton.addActionListener(e -> clearBoard());
     }
 
     private void toggleSimulation() {
@@ -95,6 +99,12 @@ public class BoardGUI extends JPanel {
     private void updateSpeed() {
         int speed = speedSlider.getMaximum() - speedSlider.getValue() + speedSlider.getMinimum();
         speedLabel.setText("Speed: " + speed);
+    }
+
+    private void clearBoard() {
+        running = false;
+        board.clear();
+        boardPanel.repaint();
     }
 
     private void runSimulation() {

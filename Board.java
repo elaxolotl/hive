@@ -61,4 +61,12 @@ public class Board {
         }
         return (double)totalLife/calculatePopulation();
     }
+
+    public void clear(){
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                grid[i][j].setAlive(false);
+            }
+        }
+    }
 }
