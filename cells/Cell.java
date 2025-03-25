@@ -116,4 +116,8 @@ public class Cell {
         }
         return count;
     }
+
+    public void randomizeLifespan(){
+        this.lifespan = (int)( Math.random() * maxLifespan);
+    }
 }

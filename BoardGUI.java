@@ -157,6 +157,7 @@ public class BoardGUI extends JPanel {
                     Cell cell = board.getGrid()[row][col];
                     cell.setAge(1);
                     cell.setAlive(!cell.getAlive());
+                    cell.randomizeLifespan();
                     repaint();
                 }
             });
