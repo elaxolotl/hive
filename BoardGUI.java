@@ -27,7 +27,7 @@ public class BoardGUI extends JPanel {
 
     public BoardGUI(Board board) {
         this.board = board;
-        this.speedSlider = new JSlider(100, 5000, 100);
+        this.speedSlider = new JSlider(100, 5000);
         this.lifespanSlider = new JSlider(3, 200, 100);
         this.startButton = new JButton("Start");
         this.resetButton = new JButton("Reset");
@@ -91,7 +91,7 @@ public class BoardGUI extends JPanel {
     }
 
     private void updateSpeed() {
-        int speed = speedSlider.getValue();
+        int speed = speedSlider.getMaximum() - speedSlider.getValue() + speedSlider.getMinimum();
         speedLabel.setText("Speed: " + speed);
     }
 
@@ -104,7 +104,8 @@ public class BoardGUI extends JPanel {
             generation++;
             boardPanel.repaint();
             try {
-                Thread.sleep(speedSlider.getValue());
+                int speed = speedSlider.getMaximum() - speedSlider.getValue() + speedSlider.getMinimum();
+                Thread.sleep(speed);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }

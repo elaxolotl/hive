@@ -29,7 +29,7 @@ This creates an evolutionary system where lifespan characteristics change over g
 - Configurable parameters for initial conditions
 
 ## Demo
-
+![demo video](/static/demo-gif.gif)
 
 ## Interesting Findings
 
@@ -39,6 +39,11 @@ Contrary to initial expectations, average lifespans tend to decrease over genera
 - The averaging inheritance mechanism tends to favor shorter lifespans
 - Spatial dynamics and timing of cell death significantly impact evolution
 
+# Project Structure
+
+The project is organized in the classes shown in the entity relationship diagram below:
+![er-diagram-hive](/static/diagram-hive.png)
+
 ## Getting Started
 
 ### Prerequisites
@@ -47,7 +52,7 @@ Contrary to initial expectations, average lifespans tend to decrease over genera
 ### Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/hive.git
+   git clone https://github.com/elaxolotl/hive.git
    ```
 2. Navigate to the project directory:
    ```sh
