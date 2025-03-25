@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -136,6 +138,18 @@ public class BoardGUI extends JPanel {
             int width = board.getGrid()[0].length * cellSize;
             int height = board.getGrid().length * cellSize;
             setPreferredSize(new Dimension(width, height));
+
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    int row = e.getY() / cellSize;
+                    int col = e.getX() / cellSize;
+                    Cell cell = board.getGrid()[row][col];
+                    cell.setAge(1);
+                    cell.setAlive(!cell.getAlive());
+                    repaint();
+                }
+            });
         }
 
         @Override
